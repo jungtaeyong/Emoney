@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="emoney.user.mapper.userMapper">
+	<select id="viewAll" resultType="UserVO">
+		SELECT * FROM account
+	</select>
+	<select id="viewId" resultType="int">
+		SELECT accnt_id FROM account where name=#{name}
+	</select>
+	<select id="idCheck" resultType="int">
+		SELECT count(id) FROM account where id=#{id}
+	</select>	
+	<select id="nicknameCheck" resultType="int">
+		SELECT count(nickname) FROM account where nickname=#{nickname}
+	</select>
+	<insert id="signup">
+		INSERT INTO account(accnt_id, nickname, name, user_type, phone, id, s_passwd)
+			VALUES(account_seq.nextval, #{nickname}, #{name}, #{userType}, #{phone}, #{id}, #{sPasswd})
+	</insert>
+	<insert id="naverSignup">
+		INSERT INTO account(accnt_id, nickname, name, user_type, phone, id, last_login)
+			VALUES(account_seq.nextval, #{nickname}, #{name}, #{userType}, #{phone}, #{id}, #{lastLogin})
+	</insert>
+	<select id="login" resultType="UserVO">
+		SELECT * FROM account where id = #{id}
+	</select>
+	<insert id="insertLoginHistory">
+		INSERT INTO login_history(accnt_id, login_date, is_mobile, ip, browser, os)
+			VALUES(#{accntId}, #{loginDate}, #{isMobile}, #{ip}, #{browser}, #{os})
+	</insert>
+	<update id="updateUserLastLogin">
+		UPDATE account SET last_login = #{lastLogin} WHERE accnt_id = #{accntId}
+	</update>
+	
+</mapper>
