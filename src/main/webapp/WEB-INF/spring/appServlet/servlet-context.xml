@@ -20,6 +20,7 @@
 	<resources mapping="/img/**" location="/WEB-INF/static/img/" /> 
 	<resources mapping="/js/**" location="/WEB-INF/static/js/" />
 	<resources mapping="/vendor/**" location="/WEB-INF/static/vendor/" />
+	<resources mapping="/images/**" location="/home/ubuntu/images/" />
 	
 	<resources mapping="/naver_editor/**" location="/naver_editor/" />
 	
