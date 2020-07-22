@@ -12,13 +12,13 @@ public class Scheduler {
 	
 //	@Inject BoardService service;
 //	
-//	/** * ¸ÅºĞ¸¶´Ù ½ÇÇà */ 
+//	/** * ë§¤ë¶„ë§ˆë‹¤ ì‹¤í–‰ */ 
 //	@Scheduled(cron = "30 * * * * *") 
 //	public void cronTest1() throws Exception{ 
 //		
 //		service.removeTemp();
 //		
-//		System.out.println("¿ÀÈÄ 05:50:00¿¡ È£ÃâÀÌ µË´Ï´Ù "); 
+//		System.out.println("ì˜¤í›„ 05:50:00ì— í˜¸ì¶œì´ ë©ë‹ˆë‹¤ "); 
 //	} 
 	
 
