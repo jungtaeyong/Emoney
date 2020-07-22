@@ -235,7 +235,7 @@ public class BoardController {
 			 System.out.println(datePath);
 			 
 			 //파일 기본경로 _ 상세경로
-			 String filePath = dftFilePath + "images" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
+			 String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
 //			 String filePath = File.separator +"home"+File.separator +"ubuntu" +File.separator+ "images"+File.separator + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
 			 bfvo.setPath(filePath);
 			 System.out.println("bbfvo: "+bfvo.getPath());
@@ -286,7 +286,7 @@ public class BoardController {
 		 
 		 String tempstr=UploadFileUtils.makeThumbnail(filePath, realFileNm);
 		 
-		 sFileInfo += "&sFileURL="+"/images/editor/multiupload"+datePath+"/"+tempstr;
+		 sFileInfo += "&sFileURL="+"/resources/editor/multiupload"+datePath+"/"+tempstr;
 		 
 		 Date now = new Date();
 		 bfvo.setRegDate(now);
