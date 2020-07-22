@@ -160,7 +160,7 @@ public class UserController {
 		System.out.println("get method!!");
 		List<UserVO> uvo=service.viewAll();
 
-		int num=service.viewId("���¿�");
+		int num=service.viewId("정태용");
 		System.out.println(num);
 		model.addAttribute("viewAll", uvo);
 		
@@ -227,10 +227,10 @@ public class UserController {
 		String decryptedValue = "";
 		 try{
 			Cipher cipher = Cipher.getInstance("RSA");
-		   /**
-			* ��ȣȭ �� ���� byte �迭�̴�.
-			* �̸� ���ڿ� ������ �����ϱ� ���� 16�� ���ڿ�(hex)�� �����Ѵ�. 
-			* ������������ ���� ���� �� hex ���ڿ��� �޾Ƽ� �̸� �ٽ� byte �迭�� �ٲ� �ڿ� ��ȣȭ ������ �����Ѵ�.
+			/**
+			* 암호화 된 값은 byte 배열이다.
+			* 이를 문자열 폼으로 전송하기 위해 16진 문자열(hex)로 변경한다. 
+			* 서버측에서도 값을 받을 때 hex 문자열을 받아서 이를 다시 byte 배열로 바꾼 뒤에 복호화 과정을 수행한다.
 			*/
 			byte[] encryptedBytes = hexToByteArray(securedValue);
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -359,7 +359,7 @@ public class UserController {
 			session.setAttribute("privateKey", "false");
 		}
 		
-		//��ȣȭó���� ����ڰ��������� ��ȣȭ ó���Ѵ�.
+		//암호화처리된 사용자계정정보를 복호화 처리한다.
 		String decrypId = decryptRsa(privateKey, rsaId);
 		String decrypPw = decryptRsa(privateKey, rsaPw);
 		dto.setId(decrypId);
@@ -446,7 +446,7 @@ public class UserController {
 		
 		logger.info("get signup!");
 		
-		// rsa�� ���ͼ��Ϳ� ó���� �� ��Ʈ�ѷ��� ó������ ����غ���.
+		// rsa를 인터셉터에 처리할 지 컨트롤러에 처리할지 고민해보자.
 		return "signup";
 	}
 	
