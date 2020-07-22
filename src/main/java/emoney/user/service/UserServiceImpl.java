@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int naverSignup(LoginHistoryVO lvo, UserVO uvo) throws Exception {
 		dao.naverSignup(uvo);
-		//insert½Ã select key·Î loginÇÔ¼ö Á¦°ÅÇØµµ µÉ °Í °°´Ù.
+		//insertì‹œ select keyë¡œ loginí•¨ìˆ˜ ì œê±°í•´ë„ ë  ê²ƒ ê°™ë‹¤.
 		uvo=dao.login(uvo.getId());
 		lvo.setAccntId(uvo.getAccntId());
 		int ret = dao.insertLoginHistory(lvo);
