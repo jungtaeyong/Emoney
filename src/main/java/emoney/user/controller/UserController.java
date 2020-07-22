@@ -69,49 +69,48 @@ public class UserController {
 		logger.info("get method!");
 		System.out.println("get method!!");
 		
-		/* ³×ÀÌ¹ö¾ÆÀÌµğ·Î ÀÎÁõ URLÀ» »ı¼ºÇÏ±â À§ÇÏ¿© naverLoginBOÅ¬·¡½ºÀÇ getAuthorizationUrl¸Ş¼Òµå È£Ãâ */
+
         String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
         
-        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-        System.out.println("³×ÀÌ¹ö:" + naverAuthUrl);
+        //í…ŒìŠ¤íŠ¸ í•´ë³´ì
+        System.out.println("ì¸ì¦:" + naverAuthUrl);
         
-        //³×ÀÌ¹ö 
+
         model.addAttribute("url", naverAuthUrl);
 
-        /* »ı¼ºÇÑ ÀÎÁõ URLÀ» View·Î Àü´Ş */
+
         return "naver_login";
 	}
 	
 	public static String convertString(String val) {
-		// º¯È¯ÇÒ ¹®ÀÚ¸¦ ÀúÀåÇÒ ¹öÆÛ ¼±¾ğ
+
 		StringBuffer sb = new StringBuffer();
-		// ±ÛÀÚ¸¦ ÇÏ³ªÇÏ³ª Å½»öÇÑ´Ù.
+
 		for (int i = 0; i < val.length(); i++) {
 		
 			if ('\\' == val.charAt(i) && 'u' == val.charAt(i + 1)) {
-				// ±× µÚ ³×±ÛÀÚ´Â À¯´ÏÄÚµåÀÇ 16Áø¼ö ÄÚµåÀÌ´Ù. intÇüÀ¸·Î ¹Ù²Ù¾î¼­ ´Ù½Ã char Å¸ÀÔÀ¸·Î °­Á¦ º¯È¯ÇÑ´Ù.
+
 				Character r = (char) Integer.parseInt(val.substring(i + 2, i + 6), 16);
-				// º¯È¯µÈ ±ÛÀÚ¸¦ ¹öÆÛ¿¡ ³Ö´Â´Ù.
+
 				sb.append(r);
-				// forÀÇ Áõ°¡ °ª 1°ú 5¸¦ ÇÕÇØ 6±ÛÀÚ¸¦ Á¡ÇÁ
+
 				i += 5;
 			} else {
-			// asciiÄÚµå¸é ±×´ë·Î ¹öÆÛ¿¡ ³Ö´Â´Ù.
+
 			sb.append(val.charAt(i));
 			}
 		}
-		// °á°ú ¸®ÅÏ
+
 		return sb.toString();
 	}
 	
 	@RequestMapping(value = "/naverCallback", method = { RequestMethod.GET, RequestMethod.POST })
     public String callback(HttpServletRequest request, Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
             throws Exception {
-        System.out.println("¿©±â´Â callback");
+        System.out.println("ë„¤ì´ë²„ ì½œë°±");
         OAuth2AccessToken oauthToken;
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
-        //·Î±×ÀÎ »ç¿ëÀÚ Á¤º¸¸¦ ÀĞ¾î¿Â´Ù.
+        //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ğ¾ï¿½Â´ï¿½.
         apiResult = naverLoginBO.getUserProfile(oauthToken);
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
         model.addAttribute("result", apiResult);
@@ -150,31 +149,7 @@ public class UserController {
         	session.setAttribute("login", uvo);
         } 
         
-        //UserVO uvo=service()
-        //session.setAttribute("login", value);
 
-        /* ³×ÀÌ¹ö ·Î±×ÀÎ ¼º°ø ÆäÀÌÁö View È£Ãâ */
-//      JSONObject jsonobj = jsonparse.stringToJson(apiResult, "response");
-//      String snsId = jsonparse.JsonToString(jsonobj, "id");
-//      String name = jsonparse.JsonToString(jsonobj, "name");
-//
-//      UserVO vo = new UserVO();
-//      vo.setUser_snsId(snsId);
-//      vo.setUser_name(name);
-//
-//      System.out.println(name);
-//      try {
-//          vo = service.naverLogin(vo);
-//      } catch (Exception e) {
-//          // TODO Auto-generated catch block
-//          e.printStackTrace();
-//      }
-
-
-//      session.setAttribute("login",vo);
-//      return new ModelAndView("user/loginPos", "result", vo);
-
-        
         return "naver_success";
     }
 	
@@ -185,7 +160,7 @@ public class UserController {
 		System.out.println("get method!!");
 		List<UserVO> uvo=service.viewAll();
 
-		int num=service.viewId("Á¤ÅÂ¿ë");
+		int num=service.viewId("ï¿½ï¿½ï¿½Â¿ï¿½");
 		System.out.println(num);
 		model.addAttribute("viewAll", uvo);
 		
@@ -213,11 +188,10 @@ public class UserController {
 		try {
 			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 	        
-	        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-	        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-	        System.out.println("³×ÀÌ¹ö:" + naverAuthUrl);
+
+	        System.out.println("ë„¤ì´ë²„ ì˜¤ì–´ì“° URL:" + naverAuthUrl);
 	        
-	        //³×ÀÌ¹ö 
+
 	        model.addAttribute("url", naverAuthUrl);
 	        
 			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
@@ -254,14 +228,14 @@ public class UserController {
 		 try{
 			Cipher cipher = Cipher.getInstance("RSA");
 		   /**
-			* ¾ÏÈ£È­ µÈ °ªÀº byte ¹è¿­ÀÌ´Ù.
-			* ÀÌ¸¦ ¹®ÀÚ¿­ ÆûÀ¸·Î Àü¼ÛÇÏ±â À§ÇØ 16Áø ¹®ÀÚ¿­(hex)·Î º¯°æÇÑ´Ù. 
-			* ¼­¹öÃø¿¡¼­µµ °ªÀ» ¹ŞÀ» ¶§ hex ¹®ÀÚ¿­À» ¹Ş¾Æ¼­ ÀÌ¸¦ ´Ù½Ã byte ¹è¿­·Î ¹Ù²Û µÚ¿¡ º¹È£È­ °úÁ¤À» ¼öÇàÇÑ´Ù.
+			* ï¿½ï¿½È£È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ byte ï¿½è¿­ï¿½Ì´ï¿½.
+			* ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½(hex)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
+			* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ hex ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¼ï¿½ ï¿½Ì¸ï¿½ ï¿½Ù½ï¿½ byte ï¿½è¿­ï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½Ú¿ï¿½ ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			*/
 			byte[] encryptedBytes = hexToByteArray(securedValue);
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
 			byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-			decryptedValue = new String(decryptedBytes, "utf-8"); // ¹®ÀÚ ÀÎÄÚµù ÁÖÀÇ.
+			decryptedValue = new String(decryptedBytes, "utf-8"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½.
 		 }catch(Exception e)
 		 {
 			 logger.info("decryptRsa Exception Error : "+e.getMessage());
@@ -292,7 +266,7 @@ public class UserController {
             logger.info(">>>> Proxy-Client-IP : " + ip);
         }
         if (ip == null) {
-            ip = request.getHeader("WL-Proxy-Client-IP"); // À¥·ÎÁ÷
+            ip = request.getHeader("WL-Proxy-Client-IP"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             logger.info(">>>> WL-Proxy-Client-IP : " + ip);
         }
         if (ip == null) {
@@ -385,7 +359,7 @@ public class UserController {
 			session.setAttribute("privateKey", "false");
 		}
 		
-		//¾ÏÈ£È­Ã³¸®µÈ »ç¿ëÀÚ°èÁ¤Á¤º¸¸¦ º¹È£È­ Ã³¸®ÇÑ´Ù.
+		//ï¿½ï¿½È£È­Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£È­ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 		String decrypId = decryptRsa(privateKey, rsaId);
 		String decrypPw = decryptRsa(privateKey, rsaPw);
 		dto.setId(decrypId);
@@ -444,7 +418,7 @@ public class UserController {
 		Object obj = session.getAttribute("login");
 		
 		if(obj != null) {
-			System.out.println("¼¼¼ÇÁ¾·á");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			//UserVO vo = (UserVO) obj;
 			session.removeAttribute("login");
 			session.invalidate();
@@ -472,7 +446,7 @@ public class UserController {
 		
 		logger.info("get signup!");
 		
-		// rsa¸¦ ÀÎÅÍ¼ÁÅÍ¿¡ Ã³¸®ÇÒ Áö ÄÁÆ®·Ñ·¯¿¡ Ã³¸®ÇÒÁö °í¹ÎÇØº¸ÀÚ.
+		// rsaï¿½ï¿½ ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Í¿ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½.
 		return "signup";
 	}
 	
