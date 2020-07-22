@@ -225,7 +225,7 @@ public class BoardController {
 			 //이미지이므로 신규 파일로 디렉토리 설정 및 업로드	
 			 //파일 기본경로
 			 String dftFilePath = request.getSession().getServletContext().getRealPath("/");
-			 
+			 System.out.println("dftFilePath: "+dftFilePath);
 			 Calendar cal = Calendar.getInstance();
 			 String yearPath = File.separator+cal.get(Calendar.YEAR);
 			 String monthPath = yearPath+ File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1); 
@@ -236,7 +236,10 @@ public class BoardController {
 			 
 			 //파일 기본경로 _ 상세경로
 			 String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
+//			 String filePath = File.separator +"home"+File.separator +"ubuntu" +File.separator+ "images"+File.separator + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
 			 bfvo.setPath(filePath);
+			 System.out.println("bbfvo: "+bfvo.getPath());
+			 
 			 File file = new File(filePath);
 			 if(!file.exists()) {
 			 	file.mkdirs();
