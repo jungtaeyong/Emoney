@@ -295,6 +295,7 @@
                     </additionalBuildcommands>
                     <downloadSources>true</downloadSources>
                     <downloadJavadocs>true</downloadJavadocs>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
