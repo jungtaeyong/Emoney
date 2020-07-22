@@ -87,11 +87,11 @@ public class BoardController {
 		System.out.println("get readPage!!");
 		System.out.println(cri);
 		
-		// ÁÖ¼®Ã³¸®ÇØµµ cri°¡ °¡´Â ÀÌÀ¯´Â?
-		// -> ÆÄ¶ó¹ÌÅÍ¿¡ ModelAttribute("cri") Critera cri°¡ ÀÖ¾î¼­ ÀÎµí.
+		// ì£¼ì„ì²˜ë¦¬í•´ë„ criê°€ ê°€ëŠ” ì´ìœ ëŠ”?
+		// -> íŒŒë¼ë¯¸í„°ì— ModelAttribute("cri") Critera criê°€ ìˆì–´ì„œ ì¸ë“¯.
 		// model.addAttribute("cri",cri);
 		
-		//¾Æ¹«·± ÀÌ¸§ ¾øÀÌ ³ÖÀ¸¸é ¹İÈ¯ÇÏ´Â °´Ã¼¸¦ Ã¹±ÛÀÚ ¼Ò¹®ÀÚÇØ¼­ ¹İÈ¯ÇÔ. ¿©±â¼­´Â boardVO
+		//ì•„ë¬´ëŸ° ì´ë¦„ ì—†ì´ ë„£ìœ¼ë©´ ë°˜í™˜í•˜ëŠ” ê°ì²´ë¥¼ ì²«ê¸€ì ì†Œë¬¸ìí•´ì„œ ë°˜í™˜í•¨. ì—¬ê¸°ì„œëŠ” boardVO
 		model.addAttribute(service.readBoard(brdId));
 		
 		return "board_read";
@@ -195,35 +195,35 @@ public class BoardController {
 		 
 		 BoardFileVO bfvo = new BoardFileVO(); 
 		 
-		 //ÆÄÀÏÁ¤º¸
+		 //íŒŒì¼ì •ë³´
 		 String sFileInfo = "";
-		 //ÆÄÀÏ¸íÀ» ¹Ş´Â´Ù - ÀÏ¹İ ¿øº»ÆÄÀÏ¸í
+		 //íŒŒì¼ëª…ì„ ë°›ëŠ”ë‹¤ - ì¼ë°˜ ì›ë³¸íŒŒì¼ëª…
 		 String filename = request.getHeader("file-name");
 		 bfvo.setOriginName(filename);
-		 //ÆÄÀÏ È®ÀåÀÚ
+		 //íŒŒì¼ í™•ì¥ì
 		 String filename_ext = filename.substring(filename.lastIndexOf(".")+1);
-		 //È®ÀåÀÚ¸¦¼Ò¹®ÀÚ·Î º¯°æ
+		 //í™•ì¥ìë¥¼ì†Œë¬¸ìë¡œ ë³€ê²½
 		 filename_ext = filename_ext.toLowerCase();
 		 bfvo.setExtension(filename_ext);
-		 //ÀÌ¹ÌÁö °ËÁõ ¹è¿­º¯¼ö
+		 //ì´ë¯¸ì§€ ê²€ì¦ ë°°ì—´ë³€ìˆ˜
 		 String[] allow_file = {"jpg","png","bmp","gif"};
 	
-		 //µ¹¸®¸é¼­ È®ÀåÀÚ°¡ ÀÌ¹ÌÁöÀÎÁö 
+		 //ëŒë¦¬ë©´ì„œ í™•ì¥ìê°€ ì´ë¯¸ì§€ì¸ì§€ 
 		 int cnt = 0;
 		 for(int i=0; i<allow_file.length; i++) {
 		 	if(filename_ext.equals(allow_file[i])){
 		 		cnt++;
 		 	}
 		 }
-		 //ÀÌ¹ÌÁö°¡ ¾Æ´Ô
+		 //ì´ë¯¸ì§€ê°€ ì•„ë‹˜
 		 if(cnt == 0) {
 			 PrintWriter print = response.getWriter();
 			 print.print("NOTALLOW_"+filename);
 			 print.flush();
 			 print.close();
 		 } else {
-			 //ÀÌ¹ÌÁöÀÌ¹Ç·Î ½Å±Ô ÆÄÀÏ·Î µğ·ºÅä¸® ¼³Á¤ ¹× ¾÷·Îµå	
-			 //ÆÄÀÏ ±âº»°æ·Î
+			 //ì´ë¯¸ì§€ì´ë¯€ë¡œ ì‹ ê·œ íŒŒì¼ë¡œ ë””ë ‰í† ë¦¬ ì„¤ì • ë° ì—…ë¡œë“œ	
+			 //íŒŒì¼ ê¸°ë³¸ê²½ë¡œ
 			 String dftFilePath = request.getSession().getServletContext().getRealPath("/");
 			 
 			 Calendar cal = Calendar.getInstance();
@@ -234,7 +234,7 @@ public class BoardController {
 			 System.out.println("datepath:");
 			 System.out.println(datePath);
 			 
-			 //ÆÄÀÏ ±âº»°æ·Î _ »ó¼¼°æ·Î
+			 //íŒŒì¼ ê¸°ë³¸ê²½ë¡œ _ ìƒì„¸ê²½ë¡œ
 			 String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
 			 bfvo.setPath(filePath);
 			 File file = new File(filePath);
@@ -250,7 +250,7 @@ public class BoardController {
 			 bfvo.setUuidName(realFileNm);
 			 String rlFileNm = filePath + realFileNm;
 			 
-			 ///////////////// ¼­¹ö¿¡ ÆÄÀÏ¾²±â ///////////////// 
+			 ///////////////// ì„œë²„ì— íŒŒì¼ì“°ê¸° ///////////////// 
 			 InputStream is = request.getInputStream();
 			 OutputStream os=new FileOutputStream(rlFileNm);
 			 int numRead;
@@ -266,12 +266,12 @@ public class BoardController {
 		 }
 		 os.flush();
 		 os.close();
-		 ///////////////// ¼­¹ö¿¡ ÆÄÀÏ¾²±â /////////////////
+		 ///////////////// ì„œë²„ì— íŒŒì¼ì“°ê¸° /////////////////
 		 System.out.println("sFileInfo:");
-		 // Á¤º¸ Ãâ·Â
+		 // ì •ë³´ ì¶œë ¥
 		 System.out.println(sFileInfo);
 		 sFileInfo += "&bNewLine=true";
-		 // img ÅÂ±×ÀÇ title ¼Ó¼ºÀ» ¿øº»ÆÄÀÏ¸íÀ¸·Î Àû¿ë½ÃÄÑÁÖ±â À§ÇÔ
+		 // img íƒœê·¸ì˜ title ì†ì„±ì„ ì›ë³¸íŒŒì¼ëª…ìœ¼ë¡œ ì ìš©ì‹œì¼œì£¼ê¸° ìœ„í•¨
 		 System.out.println(sFileInfo);
 		 sFileInfo += "&sFileName="+ filename;
 		 
@@ -295,7 +295,7 @@ public class BoardController {
 		 System.out.println(sFileInfo);
 		 
 		 }
-		 // **»ç¿ë¹ı
+		 // **ì‚¬ìš©ë²•
 		 Map<String, String> ret = new HashMap();
 		 ObjectMapper mapper = new ObjectMapper();
 		 ret.put("sFileInfo", sFileInfo);

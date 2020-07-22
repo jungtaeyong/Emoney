@@ -20,7 +20,7 @@ public class NaverLoginInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception{
 		
 		HttpSession session = request.getSession();
-		System.out.println("post handl --- �׾Ʒ�");
+		System.out.println("post handl --- 네아로");
 //		ModelMap modelMap = modelAndView.getModelMap(); 
 //		Object userVO = modelMap.get("userVO");
 		
@@ -42,7 +42,7 @@ public class NaverLoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		
 		HttpSession session = request.getSession();
-		System.out.println("pre handle -- �׾Ʒ�");
+		System.out.println("pre handle -- 네아로");
 		System.out.println("session-----");
 		System.out.println(session);
 		
