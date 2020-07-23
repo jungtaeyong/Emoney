@@ -5,33 +5,38 @@
 <html> 
 <head> 
 	<meta charset="UTF-8"> 
-	<title>KIVIEW &mdash; 글쓰기</title> 
+	<title>${boardVO.title } - 글 수정 </title> 
 	<!-- css --> 
+	<link rel="stylesheet" href="/css/table.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/post.css">
 	 <!-- js --> 
 	 <!-- SmartEditor2 라이브러리 -->
 	 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script> 
 	 <script type="text/javascript" src="/naver_editor/js/HuskyEZCreator.js"></script> 
  </head> 
  <body>
+ <div id="container">
  	<form id="modifyForm" action="/board/modifyPost" method="post">
 		<input type="hidden" id="formBrdId" name="brdId"/>
 		<input type="hidden" id="formTitle" name="title"/>
 		<input type="hidden" id="formContent" name="content"/>
 	</form>
 	
- 	<h2>수정하기</h2>
-		<label for="title">제목</label>
+ 	<div class="title-section">
 		<input type="text" id="title" value="${boardVO.title }" />
-	 	<textarea id="smarteditor" row="10" cols="100"></textarea>
+	</div>
+ 	<textarea id="smarteditor" row="10" cols="100"></textarea>
 
+	<div class="button-wrapper">
 	 	<button type="button" id="listBtn" onclick="listBoard('${cri.page}','${cri.perPageNum}')">목록으로 </button>
 	 	<button type="button" id="cancelBtn" onclick="cancelModify('${cri.page}','${cri.perPageNum}','${boardVO.brdId }')">취소 </button>
 	 	<button type="button" id="modifyBtn" onclick="modifyBoard('${cri.page}','${cri.perPageNum}','${boardVO.brdId }')">수정하기</button>
- 	
+ 	</div>
 	<form id="editor_upimage" name="editor_upimage" method="post" enctype="multipart/form-data" onSubmit="return false;">
 		
 	</form>
-	
+	</div>
 	<script type="text/javascript">
 	var editor_object = [];
 	

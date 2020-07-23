@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap');
+
+* {
+	padding: 0;
+/* 	border: 0; */
+	margin: 0;
+	font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+}
+a {
+	text-decoration: none;
+	color: #333;
+}
+a:hover {color: #0091D8;}
+li {list-style: none;}
+button {
+	cursor: pointer;
+	outline: none;
+}
+
+/* ����κ� */
+.clearfix::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.ellip {
+	width: 300px;  
+ 	text-overflow: ellipsis;  
+ 	white-space: nowrap;   
+ 	overflow: hidden;    
+ 	display: block;     
+}
+
+.content-wrapper {
+  grid-area: main;
+  padding: 1rem;
+  margin: 0.5rem;
+  height: 80vh;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+.logout-btn, #userName {display: inline;}
+.logout-btn button {
+	border: none;
+	color: #0091D8;
+  font-size: 14px;
+  background: transparent;
+}
+.title {text-align: center;}
+input:read-only {cursor: default;}
