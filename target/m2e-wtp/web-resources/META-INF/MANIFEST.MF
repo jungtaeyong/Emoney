@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: apple
-=======
 Built-By: JBBANK
->>>>>>> cb681ef3c8e2d02e17f538987a9a4c146d1466a2
 Build-Jdk: 13.0.1
 Created-By: Maven Integration for Eclipse
 
