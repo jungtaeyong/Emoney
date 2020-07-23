@@ -33,6 +33,7 @@
       <h2 class="mb-4">Jung Taeyong</h2>
       <h2 class="mb-4">1993.06.11</h2>
       <h2 class="mb-4">${serverTime}</h2>
+      <h2 class="mb-4">Jenkins Build Test</h2>
     </div>
   </section>
 
