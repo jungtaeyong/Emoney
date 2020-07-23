@@ -12,7 +12,7 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. jenkins restart 5 </P>
+<P>  The time on the server is ${serverTime}. jenkins restart six </P>
 <P>  가나다라 마바사 </P>
 </body>
 </html>
