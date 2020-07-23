@@ -6,53 +6,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>로그인 페이지 </title>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<title>로그인 페이지 </title>
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/form.css">
   <link href="/css/modal.css" rel="stylesheet">
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 
 <body>
-	<div>
-		<form id="loginForm" action="/user/loginPost" method="post">
-			<input type="hidden" id="loginFormId" name="id"/>
-			<input type="hidden" id="loginFormPw" name="sPasswd"/>
-		</form>
-			<h3 class="title">로그인</h3>
-				<span style="color: red;"></span>
-				<label for="id">아이디</label>
-				<input type="text" id="id" name="id" placeholder="아이디" required>
-				<p id="idMsg" style="display:inline;color:red"></p>
-				<br>
-				<label for="sPasswd">비밀번호</label>
-				<input type="password" id="sPasswd" name="sPasswd" placeholder="비밀번호" required>
-				<p id="pwMsg" style="display:inline;color:red"></p>
-				<br>
-				<button type="button" id="loginBtn">로그인 하기</button>
-				<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
-				<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
-		
-		<c:url var="signUpUrl" value="./signup" />
-		<p>아직 계정이 없으신가요? <a href="${signUpUrl }" >회원가입</a></p>
-	</div>
-	<br>
-	<div id="naver_id_login" style="text-align:center">
-	<a style="cursor: pointer;" onclick="naverBtn('${url}')"><img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
-	<br>
+
+<div id="wrapper" class="content-wrapper">
+	<form id="loginForm" action="/user/loginPost" method="post">
+		<input type="hidden" id="loginFormId" name="id"/>
+		<input type="hidden" id="loginFormPw" name="sPasswd"/>
+	</form>
+		<h3 class="title">로그인</h3>
+			<span style="color: red;"></span>
+			<input type="text" id="id" name="id" placeholder="아이디" required>
+			<p id="idMsg" style="display:inline;color:red"></p>
+			<input type="password" id="sPasswd" name="sPasswd" placeholder="비밀번호" required>
+			<p id="pwMsg" style="display:inline;color:red"></p>
+			<button type="button" id="loginBtn">로그인 하기</button>
+			<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
+			<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
 	
-	<button id="myBtn">Open Modal</button>
- 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
- 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>                                                               
-        <p>Some text in the Modal..</p>
-        <label for="nickname">닉네임</label>
+	<c:url var="signUpUrl" value="./signup" />
+	<p class="sign-up-msg">아직 계정이 없으신가요? <a href="${signUpUrl }" class="sign-up-btn" >회원가입</a></p>
+	<p class="divider"><span>또는</span></p>
+	<a id="naver_id_login" style="cursor: pointer;" onclick="naverBtn('${url}')"><img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a>
+<button id="myBtn">Open Modal</button>
+</div>
+
+ <!-- The Modal -->
+ <div id="myModal" class="modal">
+
+ <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="wrapper">
+    <label for="nickname">닉네임</label>
 		<input type="text" id="nickname" name="nickname" />
 		<button type="button" id="nicknameChkBtn">중복확인 </button>
 		<p id="nicknameMsg" style="display:inline; color:red;">중복검사를 진행해 주세요. </p>
@@ -72,9 +65,9 @@
 		<br>
 		<br>
 		<button type="button" id="naverLoginBtn">회원가입</button>
-      </div>
- 
-    </div>
+		</div>
+   </div>
+ </div>
 	<%
 	String oauth = "false";
 	//if(session.getAttribute("oauth") != null) oauth = (String)session.getAttribute("oauth");

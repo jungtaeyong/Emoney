@@ -1,0 +1,97 @@
+div[class*="-section"] {
+    box-sizing: border-box;
+    padding: 8px;
+    margin: 4px auto;
+    float: left;
+}
+table {
+	width: 100%;
+	border-collapse: separate;
+  border-spacing: 0 8px;
+}
+th {padding: 8px;}
+[class*="-title"] {
+    text-align: center;
+}
+.menu-title {
+    width: 400px;
+    margin: 2rem auto 0.5rem;
+    padding: 0.25rem 0;
+    background-color: #0091D8;
+    border-radius: 1.25rem;
+    color: #fff;
+    letter-spacing: 0.125rem;
+    cursor: default;
+}
+.group-name {width: 300px;}
+.group-id, .group-writer, .group-view-cnt, .group-reg-date {text-align: center;}
+.group-content {
+	line-height: 1.6;
+	border-top: 0.0625rem solid rgba(20,20,94,0.1);
+	border-bottom: 0.0625rem solid rgba(20,20,94,0.1);
+	padding: 32px 16px;
+}
+.pagination-wrapper {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+.pagination {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: auto;
+    overflow-x: scroll;
+    flex-wrap: wrap;
+}
+.page-num {
+    box-sizing: border-box;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0.0625rem solid rgba(20,20,94,0.1);
+    border-right: none;
+    padding: 0.25rem;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 2rem;
+    cursor: pointer;
+}
+.page-num:last-child {border-right: 0.0625rem solid rgba(20,20,94,0.1);}
+.page-num a {color: #666;}
+.page-num a:hover:not(.active a) {color: #0091D8;}
+.active {background-color: #0091D8;}
+.active a {
+    color: #fff;
+    font-weight: 600;
+}
+#container {
+    border: 0;
+    margin-top: 0;
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 1.75rem;
+}
+div[class*="-section"] {
+    width: 95%;
+    margin: 0.25rem 2.5%;
+    border-radius: 0.75rem;
+    background-color: #fafafa;
+}
+.region-section {border: none;}
+[class*="-section"] .col-4 {width: 50%;}
+.search-table {margin: 0.5rem 0.25rem;}
+.section-title {
+    width: 100%;
+    border-bottom: 0.0625rem solid rgba(20,20,94,0.1);
+}
+.pagination {width: 100%;}
+.button-wrapper {margin-left: 14px;}
+.content-wrapper .button-wrapper {margin: 0; margin-top: 16px;}
+#smarteditor {width: calc(100% - 4px); height: 500px;}
+#writeBtn, #mainBtn, #modifyBtn, #removeBtn, #listBtn, #cancelBtn, #writeBtn {
+    border: none;
+    font-size: 0.9rem;
+    outline: none;
+    background-color: transparent;
+    margin: 8px 16px;
+}
+#writeBtn:hover, #mainBtn:hover, #modifyBtn:hover, #removeBtn:hover, #listBtn:hover, #cancelBtn:hover, #writeBtn:hover {color: #0091D8;}

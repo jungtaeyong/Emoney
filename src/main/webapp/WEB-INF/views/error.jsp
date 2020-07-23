@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ERROR ${error.STATUS_CODE }</title>
-
+<link rel="stylesheet" href="/css/error.css">
 </head>
 
 <body>
@@ -15,9 +15,8 @@
         <div class="details">
             <h3 class="info-msg">${error.MESSAGE }</h3>
             <p>
-                <a href="<c:url value='/'/>"> <strong>[HOME]</strong></a>을 클릭하시면, 홈으로 돌아갑니다.   
+               <a href="<c:url value='/'/>"> <strong>[HOME]</strong></a>을 클릭하시면, 홈으로 돌아갑니다.   
             </p>
-            <img src="${error.imgUrl }">
         </div>
     </div>
 </body>

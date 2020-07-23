@@ -1,0 +1,14 @@
+div .title-section {
+	width: 100%;
+	background-color: transparent;
+	margin: 8px 0;
+}
+#title {
+	width: 100%;
+	padding: 4px;
+	border: none;
+	font-size: 32px;
+	outline: none;
+	border-bottom: 0.0625rem solid rgba(0,0,0,0.2);
+}
+.nickname {padding: 4px 8px;}
