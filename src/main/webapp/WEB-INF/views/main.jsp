@@ -52,9 +52,16 @@
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="#contact">Contact</a>
       </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="/user/logout">Logout</a>
-      </li>
+      <c:if test="${login==null}">
+		<li class="sidebar-nav-item">
+        	<a class="js-scroll-trigger" href="/user/login">Login</a>
+      	</li>
+	  </c:if>
+	  <c:if test="${login!=null}">
+	    <li class="sidebar-nav-item">
+        	<a class="js-scroll-trigger" href="/user/logout">Logout</a>
+      	</li>
+	  </c:if>
     </ul>
   </nav>
   <!-- Portfolio -->
@@ -110,15 +117,6 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="content-section bg-primary text-white">
-    <div class="container text-center">
-      <h2 class="mb-4">The buttons below are impossible to resist...</h2>
-      <a href="#!" class="btn btn-xl btn-light mr-4">Click Me!</a>
-      <a href="#!" class="btn btn-xl btn-dark">Look at Me!</a>
     </div>
   </section>
 

@@ -50,7 +50,7 @@
 	    <div class="collapse navbar-collapse" id="navbarResponsive">
 	      <ul class="navbar-nav ml-auto">
 	        <li class="nav-item active">
-	          <a class="nav-link" href="#">홈으로
+	          <a class="nav-link" href="/user/main">홈으로
 	                <span class="sr-only">(current)</span>
 	              </a>
 	        </li>
@@ -58,10 +58,10 @@
 	          <a class="nav-link" href="#">서비스 이용안내</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">로그인</a>
+	          <a class="nav-link" href="#">고객센터</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">회원가입</a>
+	          <a class="nav-link" href="#">오시는길</a>
 	        </li>
 	      </ul>
 	    </div>

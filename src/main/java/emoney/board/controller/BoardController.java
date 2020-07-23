@@ -120,7 +120,6 @@ public class BoardController {
 		
 		Date now = new Date();
 		bvo.setWriter(uvo.getNickname());
-		bvo.setViewCnt(0);
 		bvo.setRegDate(now);
 		System.out.println(uvo);
 		System.out.println(bvo);

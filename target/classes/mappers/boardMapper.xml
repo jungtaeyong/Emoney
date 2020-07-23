@@ -5,8 +5,8 @@
  <mapper namespace="emoney.board.mapper.boardMapper">
 	
 	<insert id="writeBoard">
-		INSERT INTO board(brd_id, writer, title, content, view_cnt, reg_date)
-			VALUES(board_seq.nextval, #{writer}, #{title}, #{content}, #{viewCnt}, #{regDate})
+		INSERT INTO board(brd_id, writer, title, content, reg_date)
+			VALUES(board_seq.nextval, #{writer}, #{title}, #{content}, #{regDate})
 		<selectKey keyProperty="brdId" resultType="int" order="AFTER">
 			SELECT BOARD_seq.currval FROM dual
 		</selectKey>
