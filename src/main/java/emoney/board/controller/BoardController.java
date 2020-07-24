@@ -59,7 +59,7 @@ public class BoardController {
 		
 		logger.info("get list!");
 		System.out.println("get list!!");
-		
+
 		List<BoardVO> list = service.listPage(cri);
 		model.addAttribute("list",list);
 		
@@ -136,32 +136,14 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	
 	@ResponseBody
 	@RequestMapping(value = "/removePost", method = RequestMethod.POST)
 	public ResponseEntity<String> removePage(@RequestBody BoardVO bvo, Criteria cri, Model model)throws Exception {
 		
-		
 		logger.info("post removePage!");
 		System.out.println("post removePage!!");
 		int brdId= bvo.getBrdId();
-		System.out.println("brdid: "+brdId);
-		
 		service.removeBoard(brdId);
-		
-		
-		
-//		List<BoardFileVO> listbfvo = service.listFile(brdId);
-//		
-//		System.out.println("listbfvo:");
-//		if(!listbfvo.isEmpty()) {
-//			service.removeBoard(brdId, listbfvo);
-//		}else {
-//			service.removeBoard(brdId);
-//		}
-//		System.out.println(listbfvo);
-		
-		
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 	
@@ -173,18 +155,15 @@ public class BoardController {
 		Date now = new Date();
 		System.out.println(bvo);
 		bvo.setModDate(now);
-		
 		if(flId!=null) {
 			service.modifyBoard(bvo, flId);
 		}else {
 			service.modifyBoard(bvo);
 		}
-		
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("brdId", bvo.getBrdId());
 		rttr.addFlashAttribute("msg","success");
-		
 		return "redirect:/board/readPage";
 	}
 	
@@ -193,7 +172,6 @@ public class BoardController {
 	public JsonNode naverMultiImgUploader(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		 
 		 BoardFileVO bfvo = new BoardFileVO(); 
-		 
 		 //파일정보
 		 String sFileInfo = "";
 		 //파일명을 받는다 - 일반 원본파일명
@@ -235,7 +213,6 @@ public class BoardController {
 			 
 			 //파일 기본경로 _ 상세경로
 			 String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
-//			 String filePath = File.separator +"home"+File.separator +"ubuntu" +File.separator+ "images"+File.separator + "resources" + File.separator + "editor" + File.separator +"multiupload" + datePath + File.separator;
 			 bfvo.setPath(filePath);
 			 System.out.println("bbfvo: "+bfvo.getPath());
 			 
@@ -297,7 +274,7 @@ public class BoardController {
 		 System.out.println(sFileInfo);
 		 
 		 }
-		 // **사용법
+		 
 		 Map<String, String> ret = new HashMap();
 		 ObjectMapper mapper = new ObjectMapper();
 		 ret.put("sFileInfo", sFileInfo);

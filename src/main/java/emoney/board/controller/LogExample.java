@@ -24,7 +24,7 @@ public class LogExample {
 		logger.info( "#ex1 - info log" );
 		logger.warn( "#ex1 - warn log" );
 		logger.error( "#ex1 - error log" );
-		logger.debug("안녕어어어엉");
+		logger.debug("Logfile Test");
 		
 		return "main";
 	}

@@ -62,45 +62,29 @@ public class UserController {
         this.naverLoginBO = naverLoginBO;
     }
 	
-	
 	@RequestMapping(value = "/naverLogin", method = RequestMethod.GET)
 	public String naverLogin(Model model, HttpSession session) throws Exception {
 		
 		logger.info("get method!");
 		System.out.println("get method!!");
-		
-
         String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-        
         //테스트 해보자
         System.out.println("인증:" + naverAuthUrl);
-        
-
         model.addAttribute("url", naverAuthUrl);
-
-
         return "naver_login";
 	}
 	
 	public static String convertString(String val) {
-
 		StringBuffer sb = new StringBuffer();
-
 		for (int i = 0; i < val.length(); i++) {
-		
 			if ('\\' == val.charAt(i) && 'u' == val.charAt(i + 1)) {
-
 				Character r = (char) Integer.parseInt(val.substring(i + 2, i + 6), 16);
-
 				sb.append(r);
-
 				i += 5;
 			} else {
-
 			sb.append(val.charAt(i));
 			}
 		}
-
 		return sb.toString();
 	}
 	
@@ -110,7 +94,6 @@ public class UserController {
         System.out.println("네이버 콜백");
         OAuth2AccessToken oauthToken;
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
-        //�α��� ����� ������ �о�´�.
         apiResult = naverLoginBO.getUserProfile(oauthToken);
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
         model.addAttribute("result", apiResult);
@@ -133,7 +116,6 @@ public class UserController {
     		String os = getOS(request);
 
     		Date now = new Date();
-    		
     		uvo.setLastLogin(now);
     		LoginHistoryVO lvo= new LoginHistoryVO(); 
     		lvo.setAccntId(uvo.getAccntId());
@@ -144,28 +126,12 @@ public class UserController {
     		lvo.setOs(os);
     		System.out.println(uvo);
     		System.out.println(lvo);
-    		//uvo.setLastLogin(null);
+
     		service.loginLog(lvo, uvo);
         	session.setAttribute("login", uvo);
         } 
-        
-
         return "naver_success";
     }
-	
-	@RequestMapping(value = "/viewAll", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception {
-		
-		logger.info("get method!");
-		System.out.println("get method!!");
-		List<UserVO> uvo=service.viewAll();
-
-		int num=service.viewId("정태용");
-		System.out.println(num);
-		model.addAttribute("viewAll", uvo);
-		
-		return "viewAll";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET) 
 	public String loginGet(Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -178,8 +144,6 @@ public class UserController {
 			Object dest=session.getAttribute("dest");
 			session.removeAttribute("dest");
 			String redirectUrl=(dest!=null? (String)dest:"/user/main");
-			
-				
 				
 			System.out.println("session is not null");
 			return "redirect:"+redirectUrl;
@@ -188,12 +152,9 @@ public class UserController {
 		try {
 			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 	        
-
-	        System.out.println("네이버 오어쓰 URL:" + naverAuthUrl);
-	        
-
+	        System.out.println("naverAuthUrl:" + naverAuthUrl);
 	        model.addAttribute("url", naverAuthUrl);
-	        
+	      
 			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
 			generator.initialize(1024);
 			KeyPair keyPair = generator.genKeyPair();
@@ -213,12 +174,9 @@ public class UserController {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		logger.info("get login!");
-		System.out.println("get login!!");
 
 		return "login";
 	}
@@ -346,7 +304,6 @@ public class UserController {
 	public String loginPost(LoginDTO dto, HttpServletRequest request, Model model)throws Exception {
 		
 		logger.info("post login!");
-		System.out.println("post login!!");
 		System.out.println(dto);
 		
 		String rsaId = dto.getId();
@@ -403,7 +360,6 @@ public class UserController {
 				service.loginLog(lvo, uvo);
 				
 				model.addAttribute("userVO",uvo);
-				//request.setAttribute("userVO", data);
 			}
 		}
 		return "login_success";
@@ -418,8 +374,6 @@ public class UserController {
 		Object obj = session.getAttribute("login");
 		
 		if(obj != null) {
-			System.out.println("��������");
-			//UserVO vo = (UserVO) obj;
 			session.removeAttribute("login");
 			session.invalidate();
 		}
@@ -473,14 +427,12 @@ public class UserController {
 		System.out.println("post signup");
 		System.out.println(uvo);
 		
-		
 		String encodedPw = standardPasswordEncoder.encode(uvo.getsPasswd());
 		uvo.setsPasswd(encodedPw);
 		System.out.println("encodedPw: "+encodedPw);
 		int ret = service.signup(uvo);
 		System.out.println("ret: "+ret);
 		return ret;
-
 	}
 	
 	@ResponseBody
@@ -489,10 +441,8 @@ public class UserController {
 		
 		System.out.println("post naverSignup");
 		System.out.println(uvo);
-	
 		Date now = new Date();
 		uvo.setLastLogin(now);
-		
 		LoginHistoryVO lvo= new LoginHistoryVO(); 
 		String ip = getIp(request);
 		String browser = getBrowser(request);
@@ -503,12 +453,9 @@ public class UserController {
 		lvo.setIsMobile(isMobile);
 		lvo.setLoginDate(now);
 		lvo.setOs(os);
-		
 		int ret =service.naverSignup(lvo, uvo);
 		request.setAttribute("userVO", uvo);
-
 		return ret;
-		
 	}
 	
 }

@@ -27,7 +27,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		System.out.println(userVO);
 		
 		if(userVO != null) {
-			System.out.println("userVO not null");
 			logger.info("new login success");
 			session.setAttribute(LOGIN, userVO);
 			Object dest=session.getAttribute("dest");
@@ -45,7 +44,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		System.out.println("pre handle");
-		System.out.println("session-----");
 		System.out.println(session);
 		
 		if(session.getAttribute(LOGIN) != null) {
