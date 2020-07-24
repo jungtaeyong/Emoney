@@ -109,7 +109,7 @@
           <a class="portfolio-item" href="#!">
             <div class="caption">
               <div class="caption-content">
-                <div class="h2">마음의 소리</div>
+                <div class="h2">의견함</div>
                 <p class="mb-0">회원님의 의견을 보내주세요!<br>이머니는 회원님의 의견을 반영합니다.</p>
               </div>
             </div>
